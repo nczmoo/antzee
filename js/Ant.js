@@ -57,7 +57,11 @@ class Ant{
             game.op_food += this.carrying 
             game.op_food -= this.moves
         }
-        this.carrying = 0;        
+        this.carrying = 0;   
+        if (game.food_inventory < 0){
+            alert("You ran out of food! LOSER!")
+            game.paused = true;
+        }
     }
 
 
