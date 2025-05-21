@@ -46,7 +46,11 @@ class Map {
 			for (let id in this.trail_decay[type]){
 				for (let trail of this.trail_decay[type][id]){
 					for (let spot of trail){
-						this.trail[spot.x][spot.y] = 1;
+						if (type == 'ants'){
+							this.trail[spot.x][spot.y] = 1;
+						} else if (type == 'ops'){
+							this.trail[spot.x][spot.y] = -1;
+						}
 					}
 				}
 			}
