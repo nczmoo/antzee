@@ -2,11 +2,10 @@ class AntReturning {
     home(id, is_player){
         let ant = game.units.fetch(id, is_player);
         let distance_to_base = fetch_distance (ant.x, ant.y, ant.base.x, ant.base.y)
-        //console.log('returning');
-        if(distance_to_base < 2){            
+        if(distance_to_base < 2 && Map.is_orthogonal(ant.x, ant.y, ant.base.x, ant.base.y)){            
             return { x: ant.base.x, y: ant.base.y };
         }
-        let open_spots = game.map.fetch.open_spots(ant.x, ant.y, is_player);
+        let open_spots = game.map.fetch.open_spots(ant.x, ant.y, is_player, true);
         let spots = { nearer: [], same: [], open: [] }
         for (let open_spot of open_spots){            
             let poss_distance_to_base = fetch_distance (open_spot.x, open_spot.y, ant.base.x, ant.base.y)                    

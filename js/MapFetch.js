@@ -1,5 +1,5 @@
 class MapFetch{
-    	direction(x1, y1, x2, y2){
+    	static direction(x1, y1, x2, y2){
 		let x_dir = x1 - x2;
 		let y_dir = y1 - y2;
 		if (x_dir > 0){
@@ -35,11 +35,12 @@ class MapFetch{
 		}
 		return n;
 	}	
-    open_spots (x, y, is_player){
+    open_spots (x, y, is_player, only_orthogonal){
 		let open_spots = [];
 		for (let poss_x = x -1 ; poss_x <= x + 1; poss_x ++){			
-			for (let poss_y = y -1 ; poss_y <= y + 1; poss_y ++){
-				if (Map.is_not_valid_space(poss_x, poss_y) || (poss_x == x && poss_y == y) 
+			for (let poss_y = y -1 ; poss_y <= y + 1; poss_y ++){				
+				if ((only_orthogonal && !Map.is_orthogonal(x, y, poss_x, poss_y))					
+					|| Map.is_not_valid_space(poss_x, poss_y) || (poss_x == x && poss_y == y) 
 					|| (is_player && game.map.scent < -game.config.scent_add) 
 					|| (is_player && game.map.trail < 0)
 					|| (!is_player && game.map.scent > game.config.scent_add)

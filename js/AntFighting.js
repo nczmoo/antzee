@@ -44,7 +44,7 @@ class AntFighting {
         //does this work?
         let ant = game.units.fetch(id, is_player);
         let search = { x: null, y: null, quantity: 0 }
-        let open_spots = game.map.fetch.open_spots(ant.x, ant.y, is_player);
+        let open_spots = game.map.fetch.open_spots(ant.x, ant.y, is_player, false);
         for (let spot of open_spots){
             let num_of_comrades = game.units.fetch_num(spot.x, spot.y, false)  
             let num_of_enemies = game.units.fetch_num(spot.x, spot.y, true);            

@@ -111,7 +111,7 @@ class UI{
 							continue;							
 						}
 						//console.log("#map-" + x + "-" + y)
-						let direction = game.map.fetch.direction(ant.x, ant.y, x, y);
+						let direction = MapFetch.direction(ant.x, ant.y, x, y);
 						if (direction.x == -1){
 							$("#map-" + x + "-" + y).addClass("a-right");
 						} else if (direction.x == 1){

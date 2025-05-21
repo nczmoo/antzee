@@ -74,8 +74,9 @@ class Map {
 	}
 
 	static is_orthogonal(x1, y1, x2, y2){
-		let direction = this.fetch.direction(x1, y1, x2, y2);
-		if (direction.x == 0 || direction == 0){
+		
+		let direction = MapFetch.direction(x1, y1, x2, y2);
+		if (direction.x == 0 || direction.y == 0){
 			return true;
 		}
 		return false;

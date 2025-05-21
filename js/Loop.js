@@ -19,7 +19,9 @@ class Loop{
         game.map.trail_decays();
         game.map.draw_trail();
         game.map.food_grows();
-        ui.refresh()
         game.ticks ++;
+        ui.refresh()
+
+        
     }
 }

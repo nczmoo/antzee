@@ -24,7 +24,6 @@ class AntMoving {
             || (!ant.exploring && ant.memory != null && food_search.quantity > ant.memory.quantity))){
             ant.add_memory(food_search.x, food_search.y, 'food', food_search.quantity);
         }
-        //console.log('moving');
         if (ant.exploring){
             space = this.exploring.world(id, is_player);            
         } else {
@@ -72,14 +71,14 @@ class AntMoving {
     }
     
     is_in_direction_of_memory(x, y, memory, direction){        
-        let memory_direction = game.map.fetch.direction (x, y, memory.x, memory.y);
+        let memory_direction = MapFetch.direction (x, y, memory.x, memory.y);
         if (memory_direction.x == direction.x && memory_direction.y == direction.y){
             return true;
         }
         return false;
     }
     is_in_any_direction_of_memory(x, y, memory, direction){        
-        let memory_direction = game.map.fetch.direction (x, y, memory.x, memory.y);
+        let memory_direction = MapFetch.direction (x, y, memory.x, memory.y);
         if (memory_direction.x == direction.x || memory_direction.y == direction.y){
             return true;
         }
