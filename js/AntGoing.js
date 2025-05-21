@@ -8,7 +8,16 @@ class AntGoing {
             console.log("THEYRE DEAD");
             return;
         }
-        game.map.add_scent(ant.x, ant.y, ant.player); //player      
+        if (ant.in_heat == 0 && randNum(1, game.config.chance_to_be_in_heat) == 1){
+            ant.in_heat = game.config.in_heat_time;
+        } else if (ant.in_heat > 0){
+            ant.in_heat --;
+        }
+        game.map.add_scent(ant.x, ant.y, is_player); 
+        if (ant.female && ant.in_heat != 0 && game.units.is_male_here(ant.x, ant.y, is_player)){
+            game.units.reproduce(is_player, ant.x, ant.y, false);
+            ant.in_heat = false;
+        }
         if (this.fighting.enemy(id, is_player)){
             return;
         } 

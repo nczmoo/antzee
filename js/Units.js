@@ -89,6 +89,22 @@ class Units {
 	}
 
 
+	is_male_here(x, y, is_player){
+		let units = "ops";
+		if (is_player){
+			units = "ants";
+		}
+		for (let ant of units){
+			if (ant.x != x || ant.y != y){
+				continue;
+			}
+			if (!ant.female){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	reproduce(is_player, x, y, pay){
 		let food = "op_food";
 		let cost = this.fetch_cost_to_reproduce(is_player);

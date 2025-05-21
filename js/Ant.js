@@ -8,15 +8,17 @@ class Ant{
     static default_see_range = 1;
     alive = true;
     attack = null;
-    health = null;
-    max_health = null;
+    female = null;
+    health = null;    
     id = null
+    in_heat = 0;
     base = null    
     player = null
     carrying = 0
     exploring = true
     growing = null;
     max_carrying = null;
+    max_health = null;
     memory = null
     moves = 0
     moves_til_death = null;    
@@ -32,6 +34,7 @@ class Ant{
         this.y = y;
         this.base = { x : x, y: y };        
         this.player = player
+        this.female = randNum(1, 2) == 1;
         this.attack = Ant.default_attack;
         this.growing = Ant.default_growing;
         this.health = Ant.default_max_health;

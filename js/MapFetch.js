@@ -19,6 +19,7 @@ class MapFetch{
 		return { x: x_dir, y: y_dir }
 	}
 
+
 	num_of_adjacent_farms(x, y){
 		let n = 0;
 		for (let poss_x = x - 1; poss_x <= x + 1; poss_x ++){
