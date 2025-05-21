@@ -41,10 +41,8 @@ class MapFetch{
 			for (let poss_y = y -1 ; poss_y <= y + 1; poss_y ++){				
 				if ((only_orthogonal && !Map.is_orthogonal(x, y, poss_x, poss_y))					
 					|| Map.is_not_valid_space(poss_x, poss_y) || (poss_x == x && poss_y == y) 
-					|| (is_player && game.map.scent < -game.config.scent_add) 
-					|| (is_player && game.map.trail < 0)
-					|| (!is_player && game.map.scent > game.config.scent_add)
-					|| (!is_player && game.map.trail > 0)){
+					|| (is_player && game.map.scent < -game.config.scent_add) 					
+					|| (!is_player && game.map.scent > game.config.scent_add)){
 					continue;
 				} else if (game.map.blocked[poss_x][poss_y] == 0){
 					open_spots.push({x: poss_x, y: poss_y})
