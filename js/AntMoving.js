@@ -61,8 +61,19 @@ class AntMoving {
     }
 
 
-    have_they_been_here(x, y){
-        for (let spot of this.history){
+    have_they_been_here(x, y, at_all){
+        if (this.history.length == 0){
+            return false;
+        }
+        if (at_all){
+            for (let spot of this.history){
+                if (spot.x == x && spot.y == y){
+                    return true;
+                }
+            }
+        }
+        for (let spot_id = this.history.length - 1; spot_id > Math.round(this.history.length / 2); spot_id --){
+            let spot = this.history[spot_id];
             if (spot.x == x && spot.y == y){
                 return true;
             }

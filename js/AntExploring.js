@@ -45,7 +45,7 @@ class AntExploring {
                     
                     let rand = randNum(0, spots[type].length - 1);
                     let spot = spots[type][rand]
-                    if (!ant.going.moving.have_they_been_here(spot.x, spot.y)){
+                    if (!ant.going.moving.have_they_been_here(spot.x, spot.y, true)){
                         ant.going.moving.add_to_history( spot.x, spot.y)
                         return { x: spot.x, y: spot.y }
                     }
@@ -62,7 +62,7 @@ class AntExploring {
             let rand = randNum(0, open_spots.length - 1);
             let spot = open_spots[rand]
 
-            if (ant.going.moving.have_they_been_here(spot.x, spot.y) && !tried.includes(spot)){
+            if (ant.going.moving.have_they_been_here(spot.x, spot.y, true) && !tried.includes(spot)){
                 tried.push(spot);
                 continue;
             }

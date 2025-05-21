@@ -22,7 +22,7 @@ class AntReturning {
                 while (n < spots[type].length * 3){
                     let rand = randNum(0, spots[type].length - 1);
                     let spot = spots[type][rand];
-                    if (!ant.going.moving.have_they_been_here(spot.x, spot.y)){
+                    if (!ant.going.moving.have_they_been_here(spot.x, spot.y, false)){
                         ant.going.moving.add_to_history(spot.x, spot.y);
                         return { x: spot.x , y: spot.y };
                     }
