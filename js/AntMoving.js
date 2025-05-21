@@ -40,7 +40,11 @@ class AntMoving {
             game.map.trail[ant.x][ant.y] = 1;
             game.map.reveal_adjacent(ant.x, ant.y)
         }
-        ant.moves ++;        
+        ant.moves ++;
+        if (ant.moves >= ant.moves_til_death){
+            console.log('starved to death');
+            ant.alive = false;
+        }
         if (ant.x == ant.base.x && ant.y == ant.base.y){
             ant.health = ant.max_health;
             ant.stock_inventory()

@@ -2,6 +2,16 @@ class AntGoing {
     fighting = new AntFighting();
     moving = new AntMoving();
 
+    eat_food(id, is_player){
+        let ant = game.units.fetch(id, is_player);
+        let food_to_eat = ant.moves;
+        if (food_to_eat > game.map.food[ant.x][ant.y]){
+            food_to_eat = game.map.food[ant.x][ant.y];
+        }
+        game.map.food[ant.x][ant.y] -= food_to_eat;
+        ant.moves -= food_to_eat;
+    }
+
     go(id, is_player){ 
         let ant = game.units.fetch(id, is_player);
         if (!ant.alive){
@@ -67,6 +77,11 @@ class AntGoing {
 
     pick_up_food(id, is_player){
         let ant = game.units.fetch(id, is_player);
+        if (game.map.food[ant.x][ant.y] < 1){
+            return;
+        }        
+        this.eat_food(id, is_player);
+        
         if (game.map.food[ant.x][ant.y] < 1){
             return;
         }
