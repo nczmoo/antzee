@@ -14,7 +14,6 @@ class Ant{
     base = null    
     player = null
     carrying = 0
-    clear_history = true;    
     exploring = true
     growing = null;
     max_carrying = null;

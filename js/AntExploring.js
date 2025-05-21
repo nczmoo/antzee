@@ -1,5 +1,5 @@
 class AntExploring {
-    world(id, is_player, clear_history){
+    world(id, is_player){
         let ant = game.units.fetch(id, is_player);
         let spots = {memory: [], memory_any: [], farther: [], same: []};        
         let distance_to_memory = null;

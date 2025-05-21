@@ -35,6 +35,7 @@ class AntMoving {
         }
         ant.x = space.x;
         ant.y = space.y;
+        game.map.add_trail(id, is_player, ant.x, ant.y);
         game.map.trail[ant.x][ant.y] = -1;
         if (is_player){
             game.map.trail[ant.x][ant.y] = 1;
@@ -46,15 +47,17 @@ class AntMoving {
             ant.stock_inventory()
             ant.moves = 0;
             ant.exploring = true;
-            this.clear_history();
+            this.clear_history(id, is_player);
         }
         
     }
 
-    clear_history(){
-        for (let spot of this.history){
-            game.map.trail[spot.x][spot.y] = 0;
+    clear_history(id, is_player){
+        let type = "ops";
+        if (is_player){
+            type = "ants";
         }
+        game.map.trail_decay[type][id].push([]);
         this.history = [];
     }
 

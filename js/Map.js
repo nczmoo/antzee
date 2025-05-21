@@ -11,7 +11,11 @@ class Map {
     scent_decay = 1
     base = null;   
 	op_base = null;
-    
+    trail_decay = {
+		ants: [],
+		ops: [],
+
+	};
     constructor(){
         let generated = MapGenerator.generate(Map.max_x, Map.max_y);
 		this.base = generated.base;
@@ -28,7 +32,26 @@ class Map {
         }
         game.map.scent[x][y] -= game.config.scent_add;
     }
-	
+	add_trail(id, is_player, x, y){
+		let type = "ops";
+		if (is_player){
+			type = 'ants';
+		}
+		let their_trail = this.trail_decay[type][id];		
+		this.trail_decay[type][id][this.trail_decay[type][id].length - 1].push({ x: x, y: y });
+	}
+
+	draw_trail(){
+		for (let type in this.trail_decay){
+			for (let id in this.trail_decay[type]){
+				for (let trail of this.trail_decay[type][id]){
+					for (let spot of trail){
+						this.trail[spot.x][spot.y] = 1;
+					}
+				}
+			}
+		}		
+	}
 
 
 	food_grows(){
@@ -48,6 +71,14 @@ class Map {
 
 	static is_not_valid_space(x, y){
 		return x < 0 || y < 0 || x >= Map.max_x || y >= Map.max_y;
+	}
+
+	static is_orthogonal(x1, y1, x2, y2){
+		let direction = this.fetch.direction(x1, y1, x2, y2);
+		if (direction.x == 0 || direction == 0){
+			return true;
+		}
+		return false;
 	}
 
 	reveal_adjacent (x, y){		
@@ -75,6 +106,22 @@ class Map {
 				}
 				this.scent[x][y] += this.scent_decay
 				
+			}
+		}
+	}
+
+	trail_decays(){
+		for (let type in this.trail_decay){
+			for (let id in this.trail_decay[type]){
+				let ant_trail = this.trail_decay[type][id];
+				if (ant_trail.length == 1){
+					continue;
+				}
+				let space = ant_trail[0].splice(0, 1)[0];
+				this.trail[space.x][space.y] = 0;
+				if (ant_trail[0].length == 0){
+					ant_trail.splice(0, 1);
+				}
 			}
 		}
 	}

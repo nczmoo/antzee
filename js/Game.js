@@ -15,7 +15,7 @@ class Game{
 	init(){
 		for (let n = 0; n < this.config.num_of_initial_ants; n++){
 			this.units.reproduce(true, this.map.base.x, this.map.base.y, false );
-			this.units.reproduce(false, this.map.op_base.x, this.map.op_base.y, false);
+			//this.units.reproduce(false, this.map.op_base.x, this.map.op_base.y, false);
 		}
 	}
 

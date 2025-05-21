@@ -74,7 +74,7 @@ class AntGoing {
             ant.exploring = false;
             game.units.adjust_avg_distance(fetch_distance(ant.x, ant.y, ant.base.x, ant.base.y), is_player);
 
-            this.moving.clear_history();
+            this.moving.clear_history(id, is_player);
         }
     }
 

@@ -99,14 +99,21 @@ class Units {
 			|| (is_player && game.food_inventory < this.fetch_cost_to_reproduce(true)))){
 			return;
 		}
+		
 		if (pay){
 			game[food] -= cost;
 		}
-		if (is_player){            
+		if (is_player){
+			
+			game.map.trail_decay.ants.push([])
+			game.map.trail_decay.ants[game.map.trail_decay.ants.length - 1].push([])
 		    this.ants.push( new Ant(this.ants.length, x, y, true))						
 			return
 		}
+		
         this.ops.push( new Ant(this.ops.length, x, y, false))
+		game.map.trail_decay.ops.push([]);
+		game.map.trail_decay.ops[game.map.trail_decay.ops.length - 1].push([])
 			
 		
 		
