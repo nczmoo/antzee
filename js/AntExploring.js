@@ -57,7 +57,20 @@ class AntExploring {
             console.log("EXPLORE BAD");
             return;
         }
+        let tried = [];
+        while (tried.length < open_spots.length){
+            let rand = randNum(0, open_spots.length - 1);
+            let spot = open_spots[rand]
+
+            if (ant.going.moving.have_they_been_here(spot.x, spot.y) && !tried.includes(spot)){
+                tried.push(spot);
+                continue;
+            }
+            ant.going.moving.add_to_history(spot.x, spot.y);
+            return { x: spot.x, y: spot.y }
+        }
         console.log('random open spot');
+
         let rand = randNum(0, open_spots.length - 1);
         let spot = open_spots[rand]
         ant.going.moving.add_to_history(spot.x, spot.y);
