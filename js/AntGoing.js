@@ -39,11 +39,9 @@ class AntGoing {
     }
 
     grow(id, is_player){
-        
         let ant = game.units.fetch(id, is_player);
         let distance_to_base = fetch_distance(ant.x, ant.y, ant.base.x, ant.base.y);
         let num_of_adjacent_farms = game.map.fetch.num_of_adjacent_farms(ant.x, ant.y);
-
         if (ant.growing == 0 
             || (distance_to_base >= 2 && num_of_adjacent_farms == 0)
             || (game.map.grow_ticks[ant.x][ant.y] != null 
@@ -51,16 +49,17 @@ class AntGoing {
             || (ant.base.x == ant.x && ant.base.y == ant.y)){
             return false;
         }
-        
-        let can_they_farm = distance_to_base < 2;
-        if (!can_they_farm ){
-            can_they_farm = randNum(1, num_of_adjacent_farms + 1) == 1;
-
+        let can_they_farm = randNum(1, ant.farmed_prev + 1) == 1; //distance_to_base < 2 || num_of_adjacent_farms > 0;
+        if (!can_they_farm){
+            ant.farmed_prev = 0;
+            return;
         }
+        
         let rand = randNum(1, game.config.min_harvest * (game.config.upgrade_levels.growing - 1));
-        if (!can_they_farm || rand > this.carrying){
+        if (rand > this.carrying){
             return false;
         }
+        ant.farmed_prev ++;
         ant.carrying -= rand;
         game.map.grow_ticks[ant.x][ant.y] = game.ticks;
         game.map.food[ant.x][ant.y] += rand;

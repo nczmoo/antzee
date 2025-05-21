@@ -1,2 +1,4 @@
-still getting an issue where ants are going on blocked squares
-bug where if you put food in a corner, ant can't get bakc out again
+bug where carrying turned negative
+combat needs to be better
+growing needs to be able to be protected
+maybe allow palyer to manage metabolism - ants starved to death and there was no control

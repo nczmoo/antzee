@@ -8,6 +8,7 @@ class Ant{
     static default_see_range = 1;
     alive = true;
     attack = null;
+    farmed_prev = 0;
     female = null;
     health = null;    
     id = null
