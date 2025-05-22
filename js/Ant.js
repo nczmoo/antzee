@@ -44,7 +44,7 @@ class Ant{
         this.max_carrying = Ant.default_max_carrying;
         this.moves_til_death = Ant.default_moves_til_death;
         this.see_range = Ant.default_see_range;
-        this.moves_til_death = Math.round(Math.sqrt(Map.max_x * Map.max_y));
+        this.moves_til_death = Math.round(Math.sqrt(Map.max_x * Map.max_y * 1.5));
 
     }
     add_memory(x, y, what, quantity){
