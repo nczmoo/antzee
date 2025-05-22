@@ -14,7 +14,7 @@ class Loop{
             }
         }
 		if (game.op_food >= game.units.fetch_cost_to_reproduce(false)){
-			game.units.reproduce(false, game.map.op_base.x, game.map.op_base.y, true);
+			//game.units.reproduce(false, game.map.op_base.x, game.map.op_base.y, true);
 		}
         game.map.trail_decays();
         game.map.draw_trail();

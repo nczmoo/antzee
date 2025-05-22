@@ -1,5 +1,6 @@
 class AntMoving {
     exploring = new AntExploring();
+    pathfinding = new AntPathfinding();
     returning = new AntReturning();
     history = [];
 
@@ -24,14 +25,38 @@ class AntMoving {
             || (!ant.exploring && ant.memory != null && food_search.quantity > ant.memory.quantity))){
             ant.add_memory(food_search.x, food_search.y, 'food', food_search.quantity);
         }
-        if (ant.exploring){
+        
+        let where_to_pathfind = this.pathfinding.where_to_go(id, is_player);
+         
+        
+        if (ant.path == null && where_to_pathfind != null){
+            ant.path = this.pathfinding.find(id, is_player, where_to_pathfind.x, where_to_pathfind.y);
+        }
+        let going_to = this.pathfinding.go(id, is_player);        
+        //console.log(ant.x, ant.y, ant.path);
+        //console.log(going_to, where_to_pathfind, ant.path);
+
+        if (ant.path != null && going_to == null){
+            console.log('bad path');
+            ant.path = null;
+        }
+
+        if (ant.path != null && going_to != null){
+            //console.log('pathfinding');
+            space = going_to;
+        } else if (ant.exploring 
+            || (ant.memory != null && ant.memory.what == 'food' 
+            && fetch_distance(ant.x, ant.y, ant.memory.x, ant.memory.y) < 2  && ant.moves  > ant.moves_til_death * .33)){
+            //console.log('explore');
             space = this.exploring.world(id, is_player);            
         } else {
+            //console.log('home');
             space = this.returning.home(id, is_player);           
         }               
-        if (space == undefined){
-            console.log(space); 
+        if (true){
+            //console.log(space); 
         }
+
         ant.x = space.x;
         ant.y = space.y;
         game.map.add_trail(id, is_player, ant.x, ant.y);

@@ -22,7 +22,8 @@ class Ant{
     max_health = null;
     memory = null
     moves = 0    
-    moves_til_death = null;    
+    moves_til_death = null; 
+    path = null;   
     see_range = 0
     x = null
     y = null

@@ -13,8 +13,8 @@ class UI{
 		for(let ant of game.units.ants){
 			txt += "<div>(" + ant.x + ", " + ant.y 
 			+ ") <span id='ant-carrying-" + ant.id + "'>carrying: "+ ant.carrying + "/" + ant.max_carrying 
-			+ "</span> food debt: " + ant.moves + " growing: " + ant.growing + " " 
-			+ " health: <span id='ant-health-" + ant.id + "'>" + ant.health + "/" + ant.max_health + "</span> attack: "+ ant.attack + " alive: "  + ant.alive + " </div>"
+			+ "</span> food debt: " + ant.moves + "/" + ant.moves_til_death + " growing: " + ant.growing + " " 
+			+ " health: <span id='ant-health-" + ant.id + "'>" + ant.health + "/" + ant.max_health + "</span> attack: "+ ant.attack + " </div>"
 		}
 		
 		$("#ants").html(txt)
