@@ -1,7 +1,7 @@
 class Config {
     chance_to_be_in_heat = 10;
     fight_exp_factor = 5;
-
+    enemies_active = false;
     food_init = 100;
     grow_cycle = 40;
     in_heat_time = 10;

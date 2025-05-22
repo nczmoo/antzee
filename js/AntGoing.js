@@ -39,7 +39,7 @@ class AntGoing {
             return;
         }
         this.pick_up_food(id, is_player);                
-        if (ant.memory != null 
+        if (ant.memory != null && ant.x == ant.memory.x && ant.y == ant.memory.y
             && ((is_player &&  game.map.food[ant.x][ant.y] < game.config.min_harvest)
             || (!is_player && game.map.food[ant.x][ant.y] < 1))
             && ant.memory.what == 'food'){

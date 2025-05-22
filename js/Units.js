@@ -115,6 +115,9 @@ class Units {
 			|| (is_player && game.food_inventory < this.fetch_cost_to_reproduce(true)))){
 			return;
 		}
+		if (!is_player && !game.config.enemies_active){
+			return;
+		}
 		
 		if (pay){
 			game[food] -= cost;

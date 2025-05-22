@@ -25,7 +25,7 @@ class AntMoving {
             || (!ant.exploring && ant.memory != null && food_search.quantity > ant.memory.quantity))){
             ant.add_memory(food_search.x, food_search.y, 'food', food_search.quantity);
         }
-        
+        console.log(food_search, ant.memory);
         let where_to_pathfind = this.pathfinding.where_to_go(id, is_player);
          
         
